@@ -1,0 +1,18 @@
+# runtime cache & sessions
+swap/
+sessions/
+undodir/
+plugin/packer_compiled.lua
+*.vim
+*.swp
+*.swo
+*.DS_Store
+
+# NvChad/Lazy/Nvim caches
+**/nvchad/**/dist/
+**/lazy-lock.json-bak
+**/.cache/
+**/spell/
+
+# machine-local history
+**/.netrwhist
