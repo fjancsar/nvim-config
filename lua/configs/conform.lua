@@ -1,25 +1,32 @@
+-- lua/configs/conform.lua
 local options = {
-  -- what to use per filetype
+  -- per-filetype formatter mapping
   formatters_by_ft = {
-    lua = { "stylua" },
-    cs  = { "csharpier" },
+    lua  = { "stylua" },
+    cs   = { "csharpier" },
+    rust = { "rustfmt" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
 
-  -- enable format-on-save (optional)
+  -- enable format-on-save
   format_on_save = {
     timeout_ms = 1000,
     lsp_fallback = true,
   },
 
-  -- custom formatter definitions (Windows-friendly)
+  -- custom formatter definitions
   formatters = {
     csharpier = {
-      command = "csharpier",                -- uses %USERPROFILE%\.dotnet\tools\csharpier.exe
-      args = { "format", "$FILENAME" },     -- call the CLI on a temp file
-      stdin = false,
+      command  = "csharpier",                -- expects %USERPROFILE%\.dotnet\tools on PATH
+      args     = { "format", "$FILENAME" },  -- run on temp file (Windows-friendly)
+      stdin    = false,
       tempfile = true,
+    },
+    rustfmt = {
+      command = "rustfmt",
+      args    = { "--edition", "2021" },
+      stdin   = true,
     },
   },
 }
